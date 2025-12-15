@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREW & SOUL - コーヒーで紡ぐ物語</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', sans-serif;
+            color: #2c1810;
+            overflow-x: hidden;
+            background: #f5f1ed;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1410 0%, #3d2817 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(139,90,43,0.15) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-30%, -30%) rotate(180deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: #d4a574;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 20px rgba(212,165,116,0.3);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #e8ddd0;
+            letter-spacing: 0.2em;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #8b5a2b 0%, #d4a574 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            box-shadow: 0 10px 30px rgba(139,90,43,0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139,90,43,0.5);
+        }
+
+        section {
+            padding: 100px 5%;
+        }
+
+        .story {
+            background: #f5f1ed;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #2c1810;
+            letter-spacing: 0.15em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8b5a2b, transparent);
+        }
+
+        .story-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #5a4a42;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 50px auto 0;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #8b5a2b, #d4a574);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .menu-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .menu-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c1810;
+        }
+
+        .menu-item p {
+            color: #7a6a62;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .location {
+            background: linear-gradient(135deg, #2c1810 0%, #4a3428 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .location .section-title {
+            color: #d4a574;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 50px auto 0;
+            font-size: 1.2rem;
+            line-height: 2.5;
+        }
+
+        .contact-info a {
+            color: #d4a574;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #e8c497;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #1a1410;
+            color: #8b7a72;
+            text-align: center;
+            padding: 40px 5%;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="logo">BREW & SOUL</h1>
+            <p class="tagline">コーヒーで紡ぐ物語</p>
+            <a href="#menu" class="cta-button">メニューを見る</a>
+        </div>
+    </div>
+
+    <section class="story">
+        <h2 class="section-title">Our Story</h2>
+        <p class="story-text">
+            一杯のコーヒーには、無限の可能性が宿っています。<br>
+            私たちは世界中から厳選した豆を丁寧に焙煎し、<br>
+            お客様一人ひとりに特別な時間をお届けします。<br><br>
+            朝の目覚めの一杯から、午後のひととき、<br>
+            大切な人との会話まで。<br>
+            あなたの日常に寄り添うコーヒー体験を。
+        </p>
+    </section>
+
+    <section id="menu">
+        <h2 class="section-title" style="text-align: center; display: block;">Our Menu</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>エスプレッソ</h3>
+                <p>深煎りの芳醇な香りと力強い味わい。イタリアの伝統製法で一杯ずつ丁寧に抽出します。</p>
+            </div>
+            <div class="menu-item">
+                <h3>ハンドドリップ</h3>
+                <p>季節ごとに変わるシングルオリジン豆を、バリスタが目の前でドリップ。豆本来の個性を堪能できます。</p>
+            </div>
+            <div class="menu-item">
+                <h3>カフェラテアート</h3>
+                <p>なめらかなミルクと上質なエスプレッソのハーモニー。美しいラテアートとともにお楽しみください。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="location">
+        <h2 class="section-title">Visit Us</h2>
+        <div class="contact-info">
+            📍 東京都渋谷区〇〇 1-2-3<br>
+            ⏰ 平日 8:00 - 20:00 / 土日祝 9:00 - 21:00<br>
+            ☎️ <a href="tel:03-1234-5678">03-1234-5678</a><br>
+            ✉️ <a href="mailto:info@brewandsoul.jp">info@brewandsoul.jp</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 BREW & SOUL. All rights reserved.</p>
+    </footer>
+</body>
+</html>
